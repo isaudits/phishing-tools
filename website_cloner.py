@@ -90,10 +90,17 @@ def main(argv):
         pass
     else:
         for url in imageList:
-            print "getting " + url + "..."
-            filename = url.split('/')[-1].split('#')[0].split('?')[0]
-            open(filename,"wb").write(urllib2.urlopen(url, timeout=5).read())
-            soup = BeautifulSoup(str(soup).decode("UTF-8").replace(url,filename).encode("UTF-8"))
+            try:
+                filename = url.split('/')[-1].split('#')[0].split('?')[0]
+                soup = BeautifulSoup(str(soup).decode("UTF-8").replace(url,filename).encode("UTF-8"))
+                
+                if not url.startswith('http'):
+                    url = urllib2.urlparse.urljoin(site_addr,url)
+                print "getting " + url + "..."
+                                
+                open(filename,"wb").write(urllib2.urlopen(url, timeout=5).read())
+            except:
+                pass
 
     cssList = []
     
@@ -105,10 +112,14 @@ def main(argv):
     else:
         for url in cssList:
             try:
-                print "getting " + url + "..."
                 filename = url.split('/')[-1].split('#')[0].split('?')[0]
-                open(filename,"wb").write(urllib2.urlopen(url, timeout=5).read())
                 soup = BeautifulSoup(str(soup).decode("UTF-8").replace(url,filename).encode("UTF-8"))
+                
+                if not url.startswith('http'):
+                    url = urllib2.urlparse.urljoin(site_addr,url)
+                print "getting " + url + "..."
+                                
+                open(filename,"wb").write(urllib2.urlopen(url, timeout=5).read())
             except:
                 pass
 
@@ -122,10 +133,14 @@ def main(argv):
     else:
         for url in scriptList:
             try:
-                print "getting " + url + "..."
                 filename = url.split('/')[-1].split('#')[0].split('?')[0]
-                open(filename,"wb").write(urllib2.urlopen(url, timeout=5).read())
                 soup = BeautifulSoup(str(soup).decode("UTF-8").replace(url,filename).encode("UTF-8"))
+                
+                if not url.startswith('http'):
+                    url = urllib2.urlparse.urljoin(site_addr,url)
+                print "getting " + url + "..."
+                                
+                open(filename,"wb").write(urllib2.urlopen(url, timeout=5).read())
             except:
                 pass
 
