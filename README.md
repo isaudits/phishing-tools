@@ -48,7 +48,7 @@ Phishing Frenzy can be downloaded at <https://github.com/pentestgeek/phishing-fr
 
 -------------------------------------------------------------------------------
 
-###License
+### License
 
 When not otherwise specified, scripts are licensed under GPL:
 
